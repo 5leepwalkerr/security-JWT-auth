@@ -17,7 +17,6 @@ import java.util.Set;
 @Getter
 @Setter
 @AllArgsConstructor
-@NoArgsConstructor
 public class CustomUser implements UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
