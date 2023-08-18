@@ -17,7 +17,6 @@ import java.util.Set;
         schema = "public",
         uniqueConstraints =
         @UniqueConstraint(columnNames = {"username"}))
-@Getter
 @Setter
 @AllArgsConstructor
 public class CustomUser implements UserDetails {
@@ -48,6 +47,20 @@ public class CustomUser implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // TODO Auto-generated method stub
         return this.authorities;
+    }
+
+    @Override
+    public String getPassword() {
+       return this.password;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    @Override
+    public String getUsername() {
+        return this.username;
     }
 
     @Override

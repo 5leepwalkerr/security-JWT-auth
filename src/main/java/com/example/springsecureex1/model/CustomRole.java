@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 @Entity
 @Table(name = "roles",schema = "public")
 @NoArgsConstructor
+@AllArgsConstructor
 @Setter
 public class CustomRole implements GrantedAuthority {
     @Id
@@ -19,11 +20,6 @@ public class CustomRole implements GrantedAuthority {
     private String authority;
 
     public CustomRole(String authority) {
-        this.authority = authority;
-    }
-
-    public CustomRole(Long roleId, String authority) {
-        this.roleId = roleId;
         this.authority = authority;
     }
 
