@@ -1,5 +1,6 @@
 package com.example.springsecureex1.controller;
 
+import com.example.springsecureex1.dto.RegisterDTO;
 import com.example.springsecureex1.model.CustomUser;
 import com.example.springsecureex1.service.UserActions;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +22,7 @@ public class UserController {
     }
 
     @PostMapping("/create-user")
-    public ResponseEntity<?> create(@RequestBody CustomUser user){
-        userActions.createUser(user);
-        return new ResponseEntity<>(HttpStatus.CREATED);
+    public ResponseEntity<?> create(@RequestBody RegisterDTO user){
+        return null;
     }
 }

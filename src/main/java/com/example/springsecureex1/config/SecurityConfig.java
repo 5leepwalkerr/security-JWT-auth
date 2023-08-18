@@ -32,7 +32,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .authorizeHttpRequests(auth -> {
-                    auth.anyRequest().authenticated();
+                    auth
+                            .requestMatchers("/user/create-user")
+                            .permitAll();
                 })
                 .httpBasic();
         return http.build();
