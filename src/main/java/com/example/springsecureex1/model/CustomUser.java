@@ -3,7 +3,6 @@ package com.example.springsecureex1.model;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -13,13 +12,17 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users",schema = "public")
+@Table(
+        name = "users",
+        schema = "public",
+        uniqueConstraints =
+        @UniqueConstraint(columnNames = {"username"}))
 @Getter
 @Setter
 @AllArgsConstructor
 public class CustomUser implements UserDetails {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long userId;
 
@@ -29,16 +32,18 @@ public class CustomUser implements UserDetails {
     @Column
     private String password;
 
-    @ManyToMany
-    @JoinTable(name = "user_roles_junction",
-     joinColumns = {@JoinColumn(name = "user_id")},
-    inverseJoinColumns = {@JoinColumn(name = "role_id")})
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "user_roles_junction",
+            joinColumns = {@JoinColumn(name = "user_id")},
+            inverseJoinColumns = {@JoinColumn(name = "role_id")}
+    )
     private Set <CustomRole> authorities;
 
     public CustomUser(){
-        super();
         authorities = new HashSet<>();
     }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         // TODO Auto-generated method stub

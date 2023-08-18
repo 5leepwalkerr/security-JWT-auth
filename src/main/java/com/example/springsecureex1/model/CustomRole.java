@@ -9,14 +9,30 @@ import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "roles",schema = "public")
-@Getter
-@Setter
-@AllArgsConstructor
 @NoArgsConstructor
+@Setter
 public class CustomRole implements GrantedAuthority {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long roleId;
 
     private String authority;
+
+    public CustomRole(String authority) {
+        this.authority = authority;
+    }
+
+    public CustomRole(Long roleId, String authority) {
+        this.roleId = roleId;
+        this.authority = authority;
+    }
+
+    @Override
+    public String getAuthority() {
+        return this.authority;
+    }
+
+    public Long getRoleId() {
+        return roleId;
+    }
 }
