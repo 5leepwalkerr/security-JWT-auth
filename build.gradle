@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-    implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
+    implementation 'org.springframework.security.oauth:spring-security-oauth2:2.1.0.RELEASE'
     implementation 'org.springframework.boot:spring-boot-starter-security'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
@@ -26,6 +26,7 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testImplementation 'org.springframework.security:spring-security-test'
     implementation('org.projectlombok:lombok:1.18.24')
+    implementation('io.jsonwebtoken:jjwt-orgjson:0.11.2')
 }
 
 tasks.named('test') {
